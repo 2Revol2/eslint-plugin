@@ -18,14 +18,26 @@ const rule = require("../../../lib/rules/path-checker"),
 
 const ruleTester = new RuleTester();
 ruleTester.run("path-checker", rule, {
-  valid: [
-    // give me some code that won't trigger a warning
-  ],
+    valid: [
+        {
+            filename: 'C:\\Users\\tim\\Desktop\\javascript\\production_project\\src\\entities\\Article',
+            code: "import { addCommentFormActions, addCommentFormReducer } from '../../model/slices/addCommentFormSlice'",
+            errors: [],
+        },
+    ],
 
-  invalid: [
-    {
-      code: "",
-      errors: [{ messageId: "Fill me in.", type: "Me too" }],
-    },
-  ],
+    invalid: [
+        {
+            filename: 'C:\\Users\\tim\\Desktop\\javascript\\production_project\\src\\entities\\Article',
+            code: "import { addCommentFormActions, addCommentFormReducer } from 'entities/Article/model/slices/addCommentFormSlice'",
+            errors: [{ message: "path should be relative"}],
+
+        },
+        {
+            filename: 'C:\\Users\\tim\\Desktop\\javascript\\production_project\\src\\entities\\Article',
+            code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/model/slices/addCommentFormSlice'",
+            errors: [{ message: "path should be relative"}],
+            options: [{alias: "@"}]
+        },
+    ],
 });
