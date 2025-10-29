@@ -58,6 +58,7 @@ ruleTester.run("public-api-imports", rule, {
       code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/model/file.ts'",
       errors: [{ message: "absolute path should be imported from public api"}],
       options: aliasOptions,
+      output: `import { addCommentFormActions, addCommentFormReducer } from "@/entities/Article";`
     },
     {
       filename: 'C:\\Users\\tim\\Desktop\\javascript\\production_project\\src\\entities\\StoreDecorator.tsx',
@@ -67,6 +68,7 @@ ruleTester.run("public-api-imports", rule, {
         alias: '@',
         testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx']
       }],
+      output: `import { addCommentFormActions, addCommentFormReducer } from "@/entities/Article";`
     },
     {
       filename: 'C:\\Users\\tim\\Desktop\\javascript\\production_project\\src\\entities\\forbidden.ts',
